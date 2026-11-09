@@ -48,5 +48,13 @@ def filtrarPorTurno(horarios, turno):
   OFERTA
 
   turnosCoincidentes = []
- 
+    
+  for turno in range(len(TURNOS)):
+      if TURNOS[turno][0].startswith(turno):
+          
+          for oferta in OFERTA:
+            if TURNOS[turno][1]==OFERTA[oferta][6]:
+                  turnosCoincidentes.append(OFERTA[oferta])
+
+    
   return []
