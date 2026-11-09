@@ -4,6 +4,11 @@
 import os
 import sys
 
+
+
+
+
+
 VERSION_MINIMA_DE_PYTHON = (3, 10)
 CARPETA_DEL_PROYECTO = os.path.dirname(os.path.abspath(__file__))
 RUTA_DE_LA_CLAVE = os.path.join(CARPETA_DEL_PROYECTO, "sarmi", ".env")
@@ -72,4 +77,4 @@ def principal():
 
 
 if __name__ == "__main__":
-    principal()
+ principal()
