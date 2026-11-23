@@ -1,5 +1,3 @@
-
-
 def normalizar(texto):
     """Recibe un texto.
     Lo pasa a minúsculas y le saca las tildes (ver LETRAS_CON_TILDE en configuracion.py).
