@@ -1,60 +1,30 @@
-from ... import configuracion
-from ... import PROGRAMACION_07, PROGRAMACION_07_VIRTUAL, PROGRAMACION_13, ALGEBRA_02, OFERTA
+from ..utilidades.horas import horaAMinutos
+from ..utilidades.textos import normalizar
+from ...configuracion import POSICION_HORA_INICIO, TURNOS
+
 
 def turnoDe(horario):
-    """OPCIONAL. Recibe un horario.
-    Se fija en qué turno empieza, según TURNOS en configuracion.py.
-    Devuelve "mañana", "tarde" o "noche", o "" si el horario es virtual.
-    Ejemplo: un horario que empieza a las 18:00 devuelve "noche".
-    
-    En base a lo que el usuario setee en 'oferta', se recorrerá (primero) la colección de TURNOS y por cada elemento de la lista, consultará si hay
-    o no coincidencia entre el horario recibido y el horario de inicio del turno. En caso de encontrar coincidencia, se devolverá el nombre del turno correspondiente.
-    En caso de no encontrar coincidencia, se devolverá un string vacío.
 
+    hora_inicio = horario[POSICION_HORA_INICIO]
+    if not hora_inicio:
+        return ""
 
-    
-    """
-    TURNOS=[
-  ["mañana", "08:00", "12:59"],
-  ["tarde", "13:00", "17:59"],
-  ["noche", "18:00", "23:59"],
-    ]
-    actual=""
-    for turno in range(len(TURNOS)):
-        if TURNOS[turno][1].startswith(horario):
-            actual=TURNOS[turno]
-            return actual[0]
+    minutos_inicio = horaAMinutos(hora_inicio)
 
+    for nombre_turno, inicio_turno, fin_turno in TURNOS:
+        if horaAMinutos(inicio_turno) <= minutos_inicio <= horaAMinutos(fin_turno):
+            return nombre_turno
 
-    return actual
+    return ""
 
 
 def filtrarPorTurno(horarios, turno):
-  """OPCIONAL. Recibe una lista de horarios y un turno ("mañana", "tarde" o "noche").
-            Se queda con los horarios que empiezan en ese turno.
-            Devuelve la lista de esos horarios, o una lista vacía si no hay ninguno.
-            Ejemplo: con los horarios de Álgebra I y "noche", devuelve el de la COM-02 (miércoles 18:00).
-    """
+ 
+    resultados = []
+    turno_buscado = normalizar(turno)
 
-  TURNOS = [
-     ["mañana", "08:00", "12:59", PROGRAMACION_07],
-     ["tarde", "13:00", "17:59", PROGRAMACION_13],
-     ["noche", "18:00", "23:59", ALGEBRA_02],
-     ["mañana", "08:00", "12:59", PROGRAMACION_07_VIRTUAL],
-     ["tarde", "13:00", "17:59", PROGRAMACION_13],
-     ["noche", "18:00", "23:59", ALGEBRA_02]
-     ]
+    for horario in horarios:
+        if normalizar(turnoDe(horario)) == turno_buscado:
+            resultados.append(horario)
 
-  OFERTA
-
-  turnosCoincidentes = []
-    
-  for turno in range(len(TURNOS)):
-      if TURNOS[turno][0].startswith(turno):
-          
-          for oferta in OFERTA:
-            if TURNOS[turno][1]==OFERTA[oferta][6]:
-                  turnosCoincidentes.append(OFERTA[oferta])
-
-    
-  return []
+    return resultados
