@@ -74,3 +74,5 @@ corresponde al Módulo VII o al módulo indicado en la oferta para dar más clar
    5. Respuestas breves, bien estructuradas (usando viñetas si hay listas) y cerrando siempre deseando 
    éxitos en la cursada.
 """
+# Agente
+NOMBRE_DEL_AGENTE = "Sarmi"
