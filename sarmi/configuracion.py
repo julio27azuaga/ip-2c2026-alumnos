@@ -78,5 +78,3 @@ corresponde al Módulo VII o al módulo indicado en la oferta para dar más clar
 MODELO = os.environ.get("MODELO_GEMINI", "gemini-3.5-flash-lite")
 NOMBRE_DEL_AGENTE = "Sarmi"
 DESCRIPCION_DEL_AGENTE = "SarmIA, el agente de la UNGS: responde consultas sobre materias, comisiones, horarios y aulas."
-SALUDO = """¡Hola! Soy SarmIA, el agente de la UNGS. Te ayudo a encontrar en qué día, horario y aula \
-se cursa cada materia, qué se dicta en un aula y si dos comisiones se superponen. ¿Qué querés consultar?"""
